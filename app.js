@@ -16,28 +16,63 @@ function searchFunction(event) {
 
 function weatherResults (query) {
     fetch (`${api.checkWeatherURL}/forecast?q=${query}&units=metric&APPID=${api.myKey}`)
-    .then(weather => {
-         return weather.json();
+    .then(data => {
+         return data.json();
     }).then(viewResults);
 }
 
-function viewResults (weather) {
-    console.log(weather);
-    let city = document.querySelector('.overview__location .overview__city')
-    city.innerText = `${weather.name}, ${weather.city.country}`;
+function viewResults (data) {
 
-    let dt = weather.dt;
-    let formateTime = new Date(dt * 1000);
-    let date = document.querySelector(`.overview__location .overview__date`)
-    date.innerText = `${formateTime}`;
+    let icon = [];
+    let city = [];
+    let country = [];
+    let mainTemp = [];
+    let description = [];
+    let minDeg = [];
+    let maxDeg = [];
 
-    let temp = document.querySelector('.overview__weather-info .overview__temp')
-    temp.innerHTML = `${Math.round(weather.main.temp).toFixed(0)}<span>c</span>`;
+    for (let i = 0; i < data.list.length; i++){
+        let mainTempFormat = data.list[i].main.temp.toFixed(0);
 
-    let weatherCondition = document.querySelector('.overview__weather-info .overview__weather');
-    weatherCondition.innerHTML = weather.weather[0].main;
+        city.push(data.city.name);
+        country.push(data.city.country);
+        mainTemp.push(mainTempFormat);
+        description.push(data.list[i].weather[0].description);
+        icon.push(data.list[i].weather[0].icon);
+        minDeg.push(Math.round(data.list[i].main.temp_min));
+        maxDeg.push(Math.round(data.list[i].main.temp_max));
 
-    let details = document.querySelector('.overview__details');
-    details.Text = `${Math.round(weather.main.temp_min)}c - ${Math.round(weather.main.temp_max)}c`;
+    }
 
+    for (let i = 0; i < 5; i++) {
+        let dt = data.list[i].dt;
+        let formatTime = new Date(dt * 1000); 
+        let options = {  
+            weekday: "long", year: "numeric", month: "short",  
+            day: "numeric", hour: "2-digit", minute: "2-digit"  
+        };  
+        let nowTime = formatTime.toLocaleTimeString("en-us", options);
+
+        $('#script__container').append(` 
+            <div class="content">
+                <main class="weather-info">
+                    <div class="overview">
+                        <div class="overview__icon">
+                            <img src="http://openweathermap.org/img/w/${icon[i]}.png" class="overview__img" alt="weather icon">     
+                        </div>
+                        <div class="overview__location">
+                            <h1 class="overview__city">${city[i]}, ${country[i]}</h1>
+                            <h2 class="overview__date">${nowTime}</h2>
+                        </div>
+
+                        <div class="overview__weather-info">
+                            <div class="overview__temp">${mainTemp[i]} C°</div>
+                            <div class="overview__weather">${description[i]}</div>
+                            <div class="overview__details">Min: ${minDeg[i]} C° - Max: ${maxDeg[i]} C°</div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        `)
+    }
 }

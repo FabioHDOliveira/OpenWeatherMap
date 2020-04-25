@@ -38,6 +38,10 @@ body {
 
 }
 
+#script__container {
+    
+}
+
 .header {
     font-size: 1.5rem;
     display: flex;

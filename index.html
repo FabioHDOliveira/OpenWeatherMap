@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
     <title>Weather App</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -20,22 +21,7 @@
             </form>
         </header>
 
-        <div class="content">
-            <main class="weather-info">
-                <div class="overview">
-                    <div class="overview__location">
-                        <h1 class="overview__city">New Westminster, BC</h1>
-                        <h2 class="overview__date">Thursday 23 April 2020</h2>
-                    </div>
-
-                    <div class="overview__weather-info">
-                        <div class="overview__temp">15C</div>
-                        <div class="overview__weather">Rain</div>
-                        <div class="overview__details">8C - 12C</div>
-                    </div>
-                </div>
-            </main>
-        </div>
+        <div id="script__container"></div>
     </div>
 
     <script src="app.js"></script>

@@ -19,6 +19,7 @@ function weatherResults (query) {
     .then(data => {
          return data.json();
     }).then(viewResults);
+    $('#script__container').empty();
 }
 
 function viewResults (data) {
@@ -44,7 +45,7 @@ function viewResults (data) {
 
     }
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < data.list.length; i+=8) {
         let dt = data.list[i].dt;
         let formatTime = new Date(dt * 1000); 
         let options = {  
@@ -54,25 +55,23 @@ function viewResults (data) {
         let nowTime = formatTime.toLocaleTimeString("en-us", options);
 
         $('#script__container').append(` 
-            <div class="content">
-                <main class="weather-info">
-                    <div class="overview">
-                        <div class="overview__icon">
-                            <img src="http://openweathermap.org/img/w/${icon[i]}.png" class="overview__img" alt="weather icon">     
-                        </div>
-                        <div class="overview__location">
-                            <h1 class="overview__city">${city[i]}, ${country[i]}</h1>
-                            <h2 class="overview__date">${nowTime}</h2>
-                        </div>
+            <main class="overview">
+                <div class="overview__icon">
+                    <img src="http://openweathermap.org/img/w/${icon[i]}.png" class="overview__img" alt="weather icon">     
+                </div>
+                <div class="overview__location">
+                    <h1 class="overview__city">${city[i]}, ${country[i]}</h1>
+                    <h2 class="overview__date">${nowTime}</h2>
+                </div>
 
-                        <div class="overview__weather-info">
-                            <div class="overview__temp">${mainTemp[i]} C°</div>
-                            <div class="overview__weather">${description[i]}</div>
-                            <div class="overview__details">Min: ${minDeg[i]} C° - Max: ${maxDeg[i]} C°</div>
-                        </div>
-                    </div>
-                </main>
-            </div>
+                <div class="overview__weather-info">
+                    <div class="overview__temp">${mainTemp[i]}<span class="overview__temp-degrees">°C</span></div>
+                    <div class="overview__condition">${description[i]}</div>
+                </div>
+                <div class="overview__details">Min: ${minDeg[i]}°C <br><br> Max: ${maxDeg[i]}°C</div>
+            </main>
         `)
     }
 }
+
+

@@ -1,0 +1,107 @@
+/* 
+/////////////////
+///COMPONENTS
+*/
+
+.search {
+    flex: 0 0 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-primary-dark;
+
+    &__input {
+        font-family: $font-primary;
+        font-size: inherit;
+        color: inherit;
+        background-color: $color-primary-light;
+        border: none;
+        padding: .6rem 3rem;
+        width: 70%;
+        border-radius: 100px;
+        margin-right: -3rem;
+        transition: all .3s;
+
+        @media only screen and (max-width: $screen-small) {
+            width: 20rem;
+            border-radius: 100px;
+            margin-right: -3rem;
+            transition: all .3s;
+        }
+    }
+
+    &__input:focus {
+        outline: none;
+        width: 100%;
+
+        @media only screen and (max-width: $screen-small) {
+            width: 30rem;
+        }
+    }
+
+    &__button {
+        border: none;
+        background-color: $color-primary-light;
+    }
+
+    &__button:focus {
+        outline: none;
+    }
+
+    &__button:active {
+        transform: translateY(2px); 
+    }
+
+    &__icon {
+        height: 2rem;
+        width: 2rem;
+        fill: $color-primary-dark;
+    }
+}
+
+.overview {
+    &__city {
+        font-size: 1.4rem;
+        margin-bottom: 1.5rem;
+        margin-top: 1.5rem;
+    }
+
+    &__date {
+        font-size: .6rem;
+        font-weight: 400;
+    }
+
+    &__weather-info {
+        position: relative;
+    }
+
+    &__temp {
+        font-size: 3.5rem;
+        font-weight: 900;
+        margin: 1.5rem;
+        text-shadow: .1rem .07rem rgba(0, 0, 0, 0.4);
+    }
+
+    &__temp-degrees {
+        font-weight: 400;
+        font-size: 2.6rem;
+    }
+
+    &__condition {
+        margin-bottom: 3.8rem;
+        font-size: 1.2rem;
+        font-weight: 600;
+        line-height: 1.5rem;
+        font-style: italic;
+        text-transform: capitalize;
+    }
+
+    &__details {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        color: $color-primary-light;
+        width: 17rem;
+        font-size: 2rem;
+    }
+}

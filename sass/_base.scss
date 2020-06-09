@@ -1,0 +1,64 @@
+/* 
+/////////////////
+///VARIABLES
+*/
+
+$color-primary-light: #f4f2f2;
+$color-primary-dark: #777;
+
+$font-primary: 'Nunito', sans-serif;
+
+$screen-large: 64.25em;    // 1000px
+$screen-medium: 51.12em;   // 800px
+$screen-small: 37.5em;     // 600px
+
+
+/* 
+/////////////////
+///BASE
+*/
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+
+    @media only screen and (max-width: $screen-large) {
+        font-size: 50%;
+    }
+}
+
+body {
+    font-family: $font-primary;
+    font-weight: 400;
+    line-height: 1.5;
+    color: $color-primary-light;
+    background: url(../img/sitebackground.jpg) no-repeat center center fixed; 
+    background-size: cover;
+}
+
+.container {
+    max-width: 100%;
+    margin: .5rem;
+    min-height: 50rem;
+    height: 100%;
+}
+
+#script__container {
+    flex: 0 0 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @media only screen and (max-width: $screen-medium) {
+        display: flex;
+        flex-direction: column;  
+    }
+}
+
+
+

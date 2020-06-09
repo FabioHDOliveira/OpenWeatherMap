@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
+    
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,400i|Nunito:300,300i" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
     <title>Weather App</title>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-    <script src="js/jquery.js"></script>
-
 </head>
 <body>
     <div class="container">
         <header class="header">
             <form action="#" class="search">
-                <input type="text" class="search__input" placeholder="Search by city">
+                <input type="text" id="search__input" class="search__input" placeholder="Search by city">
                 <button class="search__button">
                     <svg class="search__icon">
-                        <use xlink:href="sprite.svg#icon-magnifying-glass"></use>
+                        <use xlink:href="/img/sprite.svg#icon-magnifying-glass"></use>
                     </svg>
                 </button>
             </form>
@@ -27,5 +27,13 @@
     </div>
 
     <script src="app.js"></script>
+    <script>
+    function fillSearchInput() {
+        var input = document.getElementById('search__input');
+        var autocomplete = new google.maps.places.Autocomplete(input);
+    }
+    </script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&callback=fillSearchInput&key=AIzaSyBp1EMyZhs3pobiT3rB6-YKD09uqLqTKvQ"></script>
+
 </body>
 </html>

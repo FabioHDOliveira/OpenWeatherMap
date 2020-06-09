@@ -4,6 +4,7 @@ const api = {
 }
 
 const searchInput = document.querySelector('.search__input');
+const script__container = document.getElementById('script__container');
 
 searchInput.addEventListener('keypress', searchFunction);
 
@@ -19,7 +20,7 @@ function weatherResults (query) {
     .then(data => {
          return data.json();
     }).then(viewResults);
-    $('#script__container').empty();
+    script__container.innerHTML = "";
 }
 
 function viewResults (data) {
@@ -52,9 +53,9 @@ function viewResults (data) {
             weekday: "long", year: "numeric", month: "short",  
             day: "numeric", hour: "2-digit", minute: "2-digit"  
         };  
-        let nowTime = formatTime.toLocaleTimeString("en-us", options);
+        let nowTime = (formatTime.toLocaleTimeString("en-us", options)).slice(0, -10);
 
-        $('#script__container').append(` 
+        script__container.innerHTML += (` 
             <main class="overview">
                 <div class="overview__icon">
                     <img src="http://openweathermap.org/img/w/${icon[i]}.png" class="overview__img" alt="weather icon">     
@@ -73,5 +74,7 @@ function viewResults (data) {
         `)
     }
 }
+
+
 
 
